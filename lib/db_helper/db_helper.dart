@@ -17,7 +17,6 @@ class DatabaseHelper {
   String colColor = 'color';
   String colDate = 'date';
   String colImage = 'imagePath';
-    //  TODO: Baru
 
 
   DatabaseHelper._createInstance(); // Named constructor to create instance of DatabaseHelper
@@ -53,7 +52,6 @@ class DatabaseHelper {
     await db.execute(
         'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
         '$colDescription TEXT, $colPriority INTEGER, $colColor INTEGER, $colDate TEXT, $colImage TEXT)');
-        // $colImage TEXT
   }
 
   // Fetch Operation: Get all note objects from database

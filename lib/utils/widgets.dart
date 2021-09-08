@@ -3,26 +3,13 @@ import 'package:flutter/material.dart';
 List<Color> colors = [
   Color(0xFFFFFFFF),
   Color(0xffFFBCBC),
-  // Color(0xFFFCBC09),
   Color(0xFFFFF476),
   Color(0xFFCBFF90),
-  // Color(0xFFE6C9A9),
   Color(0xFFE8EAEE),
-  // Color(0xFFA7FEEA),
   Color(0xFFCAF0F8),
   Color(0xFFC9BCFF),
   Color(0xFFBCDBFF),
-  // Color(0xFFFFFFFF),
-  // Color.fromRGBO(148, 255, 159,1),
   Color.fromRGBO(255, 225, 148, 1),
-  // Color.fromRGBO(255, 148, 231, 1),
-  // Color.fromRGBO(148, 159, 255, 1),
-  // Color.fromRGBO(208, 184, 223, 1),
-  // Color.fromRGBO(248, 165, 165, 1),
-  // Color.fromRGBO(167, 248, 165, 1),
-  // Color.fromRGBO(165, 203, 248, 1),
-  // Color.fromRGBO(112, 250, 217, 1),
-
 ];
 
 class PriorityPicker extends StatefulWidget {

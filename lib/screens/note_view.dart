@@ -1,14 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-// import 'package:intl/intl.dart';
 import 'package:notes_app/db_helper/db_helper.dart';
 import 'package:notes_app/modal_class/notes.dart';
 import 'package:notes_app/screens/note_detail.dart';
 import 'package:notes_app/utils/widgets.dart';
-// import 'package:path_provider/path_provider.dart';
-// import 'package:path/path.dart';
-// import 'package:sqflite/sqflite.dart';
 
 class NoteView extends StatefulWidget {
   final String appBarTitle;
@@ -92,16 +88,7 @@ class NoteViewState extends State<NoteView> {
                             fontFamily: 'Quicksand',
                             fontWeight: FontWeight.bold,
                             fontSize: 14),
-                        // Theme.of(context).textTheme.subtitle2,
-                        // TextStyle(
-                        //     color: getPriorityColor(this.note.priority)
-                        // ),
                       ),
-                      // child: Image.asset(
-                      //   getPriorityText(this.note.priority),
-                      //   width: 17,
-                      //   height: 17,
-                      // ),
                     ),
                   ]),
             ),
@@ -130,19 +117,6 @@ class NoteViewState extends State<NoteView> {
               ),
             ),
             if (this.note.imagePath != null)
-              // Container(
-              //   width: MediaQuery.of(context).size.width,
-              //   height: 200 ,
-              //       decoration: BoxDecoration(
-              //         borderRadius: BorderRadius.circular(10.0),
-              //         image: DecorationImage(
-              //           image: FileImage(
-              //             File(this.note.imagePath),
-              //           ),
-              //           fit: BoxFit.fitWidth,
-              //         ),
-              //       ),
-              //     ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 child: Padding(

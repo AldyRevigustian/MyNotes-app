@@ -5,14 +5,12 @@ class Note {
   String _date;
   int _priority, _color;
   String _imagePath;
-  //  TODO: Baru
 
   Note(this._title, this._date, this._priority, this._color,
       [this._description,this._imagePath]);
 
   Note.withId(this._id, this._title, this._date, this._priority, this._color,
       [this._description, this._imagePath]);
-  //  TODO: Baru
 
   int get id => _id;
 
@@ -25,7 +23,6 @@ class Note {
   String get date => _date;
 
   String get imagePath => _imagePath;
-  //  TODO: Baru
 
 
   set title(String newTitle) {
@@ -43,8 +40,6 @@ class Note {
   set imagePath(String newImage){
     this._imagePath = newImage;
   }
-    //  TODO: Baru
-
 
   set priority(int newPriority) {
     if (newPriority >= 1 && newPriority <= 3) {
@@ -74,7 +69,6 @@ class Note {
     map['color'] = _color;
     map['date'] = _date;
     map['imagePath'] = _imagePath;
-  //  TODO: Baru
 
     return map;
   }
@@ -88,7 +82,6 @@ class Note {
     this._color = map['color'];
     this._date = map['date'];
 
-      //  TODO: Baru
     this._imagePath = map['imagePath'];
   }
 }

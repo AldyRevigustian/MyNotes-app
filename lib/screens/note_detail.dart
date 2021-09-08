@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -99,51 +97,32 @@ class NoteDetailState extends State<NoteDetail> {
                   child: TextField(
                     controller: titleController,
                     maxLength: 255,
-                    // decoration: InputDecoration(
-                    //   hintText: "Title",
-                    //   enabledBorder: UnderlineInputBorder(
-                    //     borderSide: BorderSide(color: Colors.blueGrey.shade900),
-                    //   ),
-                    //   focusedBorder: UnderlineInputBorder(
-                    //     borderSide: BorderSide(color: Colors.blueGrey.shade900),
-                    //   ),
-                    // ),
-
                     style: Theme.of(context).textTheme.bodyText2,
                     onChanged: (value) {
                       updateTitle();
                     },
-
-                      decoration: InputDecoration(
-                        alignLabelWithHint: true,
-                        labelStyle: TextStyle(
-                            fontFamily: 'Quicksand',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54,
-                            fontSize: 20),
-                        labelText: "Title",
-                        // hintText: "Description",
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.transparent),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.transparent),
-                        ),
+                    decoration: InputDecoration(
+                      alignLabelWithHint: true,
+                      labelStyle: TextStyle(
+                          fontFamily: 'Quicksand',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54,
+                          fontSize: 20),
+                      labelText: "Title",
+                      // hintText: "Description",
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
                       ),
-
-
-                    // decoration: InputDecoration.collapsed(
-                    //   hintText: 'Title',
-                    // ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(16, 20, 16, 8),
-                    child: 
-                    TextField(
+                    child: TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: 8,
                       maxLength: 255,
@@ -160,20 +139,13 @@ class NoteDetailState extends State<NoteDetail> {
                             color: Colors.black54,
                             fontSize: 18),
                         labelText: "Description",
-                        // hintText: "Description",
                         enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.transparent),
+                          borderSide: BorderSide(color: Colors.transparent),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.transparent),
+                          borderSide: BorderSide(color: Colors.transparent),
                         ),
                       ),
-
-                      // decoration: InputDecoration.collapsed(
-                      //   hintText: 'Description',
-                      // ),
                     ),
                   ),
                 ),
@@ -226,7 +198,6 @@ class NoteDetailState extends State<NoteDetail> {
                           ),
                           child: IconButton(
                             onPressed: () {
-                              // note.imagePath;
                               cropImage(_image);
                             },
                             icon:
@@ -239,7 +210,6 @@ class NoteDetailState extends State<NoteDetail> {
               ],
             ),
           ),
-          
           floatingActionButton: SpeedDial(
             animatedIcon: AnimatedIcons.menu_close,
             curve: Curves.bounceIn,
@@ -248,7 +218,6 @@ class NoteDetailState extends State<NoteDetail> {
             children: [
               SpeedDialChild(
                 backgroundColor: Colors.blue,
-                // backgroundColor: Colors.blueGrey.shade900,
                 foregroundColor: Colors.white,
                 onTap: () {
                   showColorDialog(context);
@@ -259,7 +228,6 @@ class NoteDetailState extends State<NoteDetail> {
               ),
               SpeedDialChild(
                 backgroundColor: Colors.purple,
-                // backgroundColor: Colors.blueGrey.shade900,
                 foregroundColor: Colors.white,
                 onTap: () {
                   getImage(ImageSource.gallery);
@@ -268,7 +236,6 @@ class NoteDetailState extends State<NoteDetail> {
               ),
               SpeedDialChild(
                 backgroundColor: Colors.red,
-                // backgroundColor: Colors.blueGrey.shade900,
                 foregroundColor: Colors.white,
                 onTap: () {
                   getImage(ImageSource.camera);
@@ -277,7 +244,6 @@ class NoteDetailState extends State<NoteDetail> {
               )
             ],
           ),
-
         ));
   }
 
@@ -504,7 +470,6 @@ class NoteDetailState extends State<NoteDetail> {
             minimumAspectRatio: 1.0,
           ));
 
-      // File tmpFile = File(imageFile.path);
       if (croppedFile != null) {
         File tmpFile = File(croppedFile.path);
 

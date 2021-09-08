@@ -49,7 +49,6 @@ class NoteListState extends State<NoteList> {
                   final Note result = await showSearch(
                       context: context, delegate: NotesSearch(notes: noteList));
                   if (result != null) {
-                    // navigateToDetail(result, 'Edit Note');
                     navigateToView(result, 'View Note');
                   }
                 },
@@ -120,7 +119,6 @@ class NoteListState extends State<NoteList> {
       itemCount: count,
       itemBuilder: (BuildContext context, int index) => GestureDetector(
         onTap: () {
-          // navigateToDetail(this.noteList[index], 'Edit Note');
           navigateToView(this.noteList[index], 'View Note');
         },
         child: Padding(
@@ -129,7 +127,6 @@ class NoteListState extends State<NoteList> {
             padding: EdgeInsets.all(5.0),
             decoration: BoxDecoration(
                 color: colors[this.noteList[index].color],
-                // border: Border.all(width: 2, color: Colors.black),
                 borderRadius: BorderRadius.circular(10.0)),
             child: Column(
               children: <Widget>[
