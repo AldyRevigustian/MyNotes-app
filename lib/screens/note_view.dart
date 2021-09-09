@@ -93,19 +93,19 @@ class NoteViewState extends State<NoteView> {
                   ]),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+              padding: EdgeInsets.fromLTRB(16, 5, 16, 0),
               child: Text(
                 note.title,
                 style: TextStyle(
                     fontFamily: 'Quicksand',
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
-                    fontSize: 30),
+                    fontSize: 25),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(16, 30, 16, 35),
+                padding: EdgeInsets.fromLTRB(16, 30, 16, 30),
                 child: Text(
                   note.description,
                   style: TextStyle(
