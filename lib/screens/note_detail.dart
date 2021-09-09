@@ -95,8 +95,9 @@ class NoteDetailState extends State<NoteDetail> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                   child: TextField(
+                    // autofocus: true,
                     controller: titleController,
-                    maxLength: 255,
+                    // maxLength: 255,
                     style: Theme.of(context).textTheme.bodyText2,
                     onChanged: (value) {
                       updateTitle();
@@ -121,11 +122,11 @@ class NoteDetailState extends State<NoteDetail> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(16, 20, 16, 8),
+                    padding: EdgeInsets.fromLTRB(20, 20, 16, 8),
                     child: TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: 8,
-                      maxLength: 255,
+                      // maxLength: 255,
                       controller: descriptionController,
                       style: Theme.of(context).textTheme.bodyText1,
                       onChanged: (value) {
@@ -279,7 +280,7 @@ class NoteDetailState extends State<NoteDetail> {
                       .copyWith(color: Colors.black)),
               onPressed: () {
                 Navigator.of(context).pop();
-                moveToLastScreen();
+                moveToFirstScreen();
               },
             ),
           ],

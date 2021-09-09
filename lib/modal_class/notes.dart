@@ -32,10 +32,14 @@ class Note {
   }
 
   set description(String newDescription) {
-    if (newDescription.length <= 255) {
       this._description = newDescription;
-    }
+
   }
+  // set description(String newDescription) {
+  //   if (newDescription.length <= 255) {
+  //     this._description = newDescription;
+  //   }
+  // }
 
   set imagePath(String newImage){
     this._imagePath = newImage;
