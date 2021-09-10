@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/db_helper/db_helper.dart';
 import 'package:notes_app/modal_class/notes.dart';
 import 'package:notes_app/screens/note_detail.dart';
-
 import 'package:notes_app/screens/note_view.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -135,12 +134,12 @@ class NoteListState extends State<NoteList> {
                     children: <Widget>[
                       Expanded(
                           child: Padding(
-                              padding: const EdgeInsets.fromLTRB(8, 3, 8, 5),
+                              padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
                               child: Text(this.noteList[index].date,
                                   style:
                                       Theme.of(context).textTheme.subtitle2))),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 3, 8, 5),
+                        padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
                         child: Image.asset(
                           getPriorityText(this.noteList[index].priority),
                           width: 17,
@@ -165,7 +164,7 @@ class NoteListState extends State<NoteList> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 10),
+                  padding: const EdgeInsets.fromLTRB(8, 0, 5, 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[

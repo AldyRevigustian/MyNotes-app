@@ -103,8 +103,8 @@ class NoteViewState extends State<NoteView> {
                     fontSize: 25),
               ),
             ),
-            Expanded(
-              child: Padding(
+          
+              Padding(
                 padding: EdgeInsets.fromLTRB(16, 30, 16, 30),
                 child: Text(
                   note.description,
@@ -115,7 +115,7 @@ class NoteViewState extends State<NoteView> {
                       fontSize: 20),
                 ),
               ),
-            ),
+          
             if (this.note.imagePath != null)
               Container(
                 width: MediaQuery.of(context).size.width,

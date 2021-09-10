@@ -93,7 +93,7 @@ class NoteDetailState extends State<NoteDetail> {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                  padding: EdgeInsets.fromLTRB(15, 0, 16, 0),
                   child: TextField(
                     // autofocus: true,
                     controller: titleController,
@@ -120,9 +120,9 @@ class NoteDetailState extends State<NoteDetail> {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 20, 16, 8),
+                
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(15, 20, 16, 0),
                     child: TextField(
                       keyboardType: TextInputType.multiline,
                       maxLines: 8,
@@ -149,15 +149,16 @@ class NoteDetailState extends State<NoteDetail> {
                       ),
                     ),
                   ),
-                ),
+                
                 if (_image != null)
                   Stack(children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        // padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                         child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius: BorderRadius.circular(10.0),
                             child: Image.file(_image)),
                       ),
                     ),
@@ -443,13 +444,13 @@ class NoteDetailState extends State<NoteDetail> {
   }
 
   getImage(ImageSource imageSource) async {
-    XFile imageFile =
-        await picker.pickImage(source: imageSource, imageQuality: 20);
-    // XFile imageFile = await picker.pickImage(source: imageSource, imageQuality:20);
+    XFile imageFile = await picker.pickImage(source: imageSource, imageQuality:20);
+
     // PickedFile imageFile = await picker.getImage(
     //   source: imageSource,
     //   imageQuality: 25,
     // );
+
     if (imageFile != null) {
       File croppedFile = await ImageCropper.cropImage(
           sourcePath: imageFile.path,
