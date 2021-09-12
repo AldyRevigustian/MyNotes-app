@@ -39,7 +39,7 @@ class DatabaseHelper {
   Future<Database> initializeDatabase() async {
     // Get the directory path for both Android and iOS to store database.
     Directory directory = await getApplicationDocumentsDirectory();
-    print('db location :' + directory.path);
+    // print('db location :' + directory.path);
     String path = directory.path + 'notes.db';
 
     // Open/create the database at a given path
