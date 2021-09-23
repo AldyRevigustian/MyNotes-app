@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/db_helper/db_helper.dart';
 import 'package:notes_app/modal_class/notes.dart';
@@ -10,6 +11,9 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:notes_app/screens/search_note.dart';
 import 'package:notes_app/utils/widgets.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:page_transition/page_transition.dart';
+
 
 class NoteList extends StatefulWidget {
   @override
@@ -23,7 +27,6 @@ class NoteListState extends State<NoteList> {
   List<Note> noteList;
   int count = 0;
   int axisCount = 2;
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,21 +44,24 @@ class NoteListState extends State<NoteList> {
         elevation: 0,
         backgroundColor: Colors.blueGrey.shade900,
         actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () async {
-                  final Note result = await showSearch(
-                      context: context, delegate: NotesSearch(notes: noteList));
-                  if (result != null) {
-                    navigateToView(result, 'View Note');
-                  }
-                },
-                child: Icon(
-                  Icons.search,
-                  size: 26.0,
-                ),
-              )),
+          noteList.length == 0
+              ? Container()
+              : Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () async {
+                      final Note result = await showSearch(
+                          context: context,
+                          delegate: NotesSearch(notes: noteList));
+                      if (result != null) {
+                        navigateToView(result, 'View Note');
+                      }
+                    },
+                    child: Icon(
+                      Icons.search,
+                      size: 26.0,
+                    ),
+                  )),
         ],
         leading: noteList.length == 0
             ? Container()
@@ -77,27 +83,25 @@ class NoteListState extends State<NoteList> {
 
     return Scaffold(
       appBar: myAppBar(),
-      body: 
-      noteList.length == 0
-            ? Container(
-                color: Colors.blueGrey.shade900,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text('No Notes',
-                        style: TextStyle(
-                            fontFamily: 'Quicksand',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 20)),
-                  ),
+      body: noteList.length == 0
+          ? Container(
+              color: Colors.blueGrey.shade900,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(0.0),
+                  child: Text('No Notes',
+                      style: TextStyle(
+                          fontFamily: 'Quicksand',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 20)),
                 ),
-              )
-            : Container(
-                color: Colors.blueGrey.shade900,
-                child: getNotesList(),
               ),
-      
+            )
+          : Container(
+              color: Colors.blueGrey.shade900,
+              child: getNotesList(),
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           navigateToDetail(Note('', '', 3, 0), 'Add Note');
@@ -107,6 +111,53 @@ class NoteListState extends State<NoteList> {
             side: BorderSide(color: Color.fromRGBO(42, 38, 56, 1), width: 2.0)),
         child: Icon(Icons.add, color: Colors.black),
         backgroundColor: Colors.white,
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.white,
+          child: ListView(
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(color: Colors.white),
+                child: Container(
+                    child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 12, 8, 8),
+                      child: Material(
+                          child: Image.asset(
+                        'assets/splash2.png',
+                        height: 60,
+                        width: 60,
+                      )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Text("My Notes",
+                          style: TextStyle(
+                              color: Colors.blueGrey.shade900,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Text("© 2021 Aldy Revi",
+                          style: TextStyle(
+                              color: Colors.blueGrey.shade900,
+                              fontSize: 10,
+                              fontWeight: FontWeight.normal)),
+                    )
+                  ],
+                )),
+              ),
+              Divider(height: 1,color: Colors.grey[400],indent: 15, endIndent: 15,thickness: 1,),
+              // Divider(height: 1,color: Colors.grey[400],indent: 20, endIndent: 20,thickness: 1,),
+              
+              CustomDelete(),
+              CustomAbout(),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -147,7 +198,6 @@ class NoteListState extends State<NoteList> {
                         ),
                       ),
                     ]),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,7 +207,7 @@ class NoteListState extends State<NoteList> {
                         padding: const EdgeInsets.fromLTRB(8, 2, 8, 12),
                         child: Text(
                           this.noteList[index].title,
-                          style: Theme.of(context).textTheme.bodyText2,
+                          style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),
                         ),
                       ),
                     ),
@@ -189,17 +239,15 @@ class NoteListState extends State<NoteList> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
                           image: DecorationImage(
-                          image: FileImage(
-                            File(this.noteList[index].imagePath),
+                            image: FileImage(
+                              File(this.noteList[index].imagePath),
+                            ),
+                            fit: BoxFit.cover,
                           ),
-                          fit: BoxFit.cover,
                         ),
-                        ),
-                        
                       ),
                     ),
                   ),
-
               ],
             ),
           ),
@@ -241,8 +289,8 @@ class NoteListState extends State<NoteList> {
   }
 
   void navigateToDetail(Note note, String title) async {
-    bool result = await Navigator.push(context,
-        MaterialPageRoute(builder: (context) => NoteDetail(note, title)));
+    bool result = await Navigator.push(context,MaterialPageRoute(builder: (context) => NoteDetail(note, title)), );
+    // bool result = await Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: NoteDetail(note,title)));
 
     if (result == true) {
       updateListView();
@@ -269,5 +317,164 @@ class NoteListState extends State<NoteList> {
         });
       });
     });
+  }
+}
+
+class CustomAbout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        onTap: () {
+          showAboutDialog(
+            context: context,
+            applicationIcon: Padding(
+              padding: const EdgeInsets.all(5),
+              child: Material(
+                child: Image.asset(
+                  'assets/splash2.png',
+                  height: 80,
+                  width: 80,
+                ),
+              ),
+            ),
+            applicationVersion: '1.0.0',
+            applicationLegalese: "© 2021 Aldy Revi",
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
+                // child: Text("Source Code", style: TextStyle(color: Colors.black),),
+                child: RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                      style: TextStyle(color: Colors.black),
+                      text:
+                          "Flutter is an early-stage, open-source project to help developers build high performance, high-fidelity, mobile apps for iOS and Android from a single codebase. Learn more about Flutter at "),
+                  TextSpan(
+                    style: TextStyle(color: Colors.blue),
+                    text: "Flutter Dev",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        launch(
+                            'https://flutter.dev/');
+                      },
+                  ),
+                  TextSpan(
+                      style: TextStyle(color: Colors.black),
+                      text:
+                          "\n \nTo see the source code for this app, please visit the "),
+                  TextSpan(
+                    style: TextStyle(color: Colors.blue),
+                    text: "Source Code",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        launch(
+                            'https://github.com/AldyRevigustian/MyNotes-Flutter-App.git');
+                      },
+                  ),        
+                ])),
+              )
+            ],
+          );
+        },
+        child: Container(
+          height: 60,
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                child: Icon(Icons.info_outline, color: Colors.blueGrey.shade900),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                child: Text("About",
+                    style: TextStyle(
+                        color: Colors.blueGrey.shade900,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class CustomDelete extends StatefulWidget {
+  @override
+  _CustomDeleteState createState() => _CustomDeleteState();
+}
+
+class _CustomDeleteState extends State<CustomDelete> {
+  DatabaseHelper databaseHelper = DatabaseHelper();
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        onTap: () {
+          showDeleteAllDialog(context);
+        },
+
+        child: Container(
+          height: 60,
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                child: Icon(Icons.delete_forever, color: Colors.blueGrey.shade900),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                child: Text("Delete All",
+                    style: TextStyle(
+                        color: Colors.blueGrey.shade900,
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void showDeleteAllDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          title: Text(
+            "Delete All Notes?",
+            style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),
+          ),
+          content: Text("Are you sure you want to delete all notes?",
+              style: Theme.of(context).textTheme.bodyText1),
+          actions: <Widget>[
+            TextButton(
+              child: Text("No",
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("Yes",
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
+              onPressed: () {
+                databaseHelper.deleteAllNote();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

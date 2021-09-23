@@ -98,7 +98,11 @@ class NoteDetailState extends State<NoteDetail> {
                     // autofocus: true,
                     controller: titleController,
                     // maxLength: 255,
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: TextStyle(
+                        fontFamily: 'Quicksand',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20),
                     onChanged: (value) {
                       updateTitle();
                     },
@@ -120,36 +124,34 @@ class NoteDetailState extends State<NoteDetail> {
                     ),
                   ),
                 ),
-                
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(15, 20, 16, 0),
-                    child: TextField(
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 8,
-                      // maxLength: 255,
-                      controller: descriptionController,
-                      style: Theme.of(context).textTheme.bodyText1,
-                      onChanged: (value) {
-                        updateDescription();
-                      },
-                      decoration: InputDecoration(
-                        alignLabelWithHint: true,
-                        labelStyle: TextStyle(
-                            fontFamily: 'Quicksand',
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black54,
-                            fontSize: 18),
-                        labelText: "Description",
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                        ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(15, 20, 16, 0),
+                  child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 8,
+                    // maxLength: 255,
+                    controller: descriptionController,
+                    style: Theme.of(context).textTheme.bodyText1,
+                    onChanged: (value) {
+                      updateDescription();
+                    },
+                    decoration: InputDecoration(
+                      alignLabelWithHint: true,
+                      labelStyle: TextStyle(
+                          fontFamily: 'Quicksand',
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black54,
+                          fontSize: 18),
+                      labelText: "Description",
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
                       ),
                     ),
                   ),
-                
+                ),
                 if (_image != null)
                   Stack(children: [
                     Container(
@@ -258,27 +260,24 @@ class NoteDetailState extends State<NoteDetail> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Discard Changes?",
-            style: Theme.of(context).textTheme.bodyText2,
+            style: TextStyle(
+                fontFamily: 'Quicksand',
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 20),
           ),
           content: Text("Are you sure you want to discard changes?",
               style: Theme.of(context).textTheme.bodyText1),
           actions: <Widget>[
             TextButton(
               child: Text("No",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black)),
-              onPressed: () {
+            style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),              onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: Text("Yes",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black)),
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
               onPressed: () {
                 Navigator.of(context).pop();
                 moveToFirstScreen();
@@ -299,17 +298,18 @@ class NoteDetailState extends State<NoteDetail> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Title And Description",
-            style: Theme.of(context).textTheme.bodyText2,
+            style: TextStyle(
+                fontFamily: 'Quicksand',
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 20),
           ),
           content: Text('Title and description must be filled.',
               style: Theme.of(context).textTheme.bodyText1),
           actions: <Widget>[
             TextButton(
               child: Text("Ok",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black)),
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -329,27 +329,25 @@ class NoteDetailState extends State<NoteDetail> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Delete Note?",
-            style: Theme.of(context).textTheme.bodyText2,
+            style: TextStyle(
+                fontFamily: 'Quicksand',
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 20),
           ),
           content: Text("Are you sure you want to delete this note?",
               style: Theme.of(context).textTheme.bodyText1),
           actions: <Widget>[
             TextButton(
               child: Text("No",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black)),
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: Text("Yes",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black)),
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
               onPressed: () {
                 Navigator.of(context).pop();
                 _delete();
@@ -414,7 +412,11 @@ class NoteDetailState extends State<NoteDetail> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Choose Color",
-            style: Theme.of(context).textTheme.bodyText2,
+            style: TextStyle(
+                fontFamily: 'Quicksand',
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 20),
           ),
           content: ColorPicker(
             selectedIndex: note.color,
@@ -429,10 +431,7 @@ class NoteDetailState extends State<NoteDetail> {
           actions: <Widget>[
             TextButton(
               child: Text("Yes",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black)),
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -444,7 +443,8 @@ class NoteDetailState extends State<NoteDetail> {
   }
 
   getImage(ImageSource imageSource) async {
-    XFile imageFile = await picker.pickImage(source: imageSource, imageQuality:20);
+    XFile imageFile =
+        await picker.pickImage(source: imageSource, imageQuality: 20);
 
     // PickedFile imageFile = await picker.getImage(
     //   source: imageSource,

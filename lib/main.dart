@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
       title: 'My Note',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
         textTheme: TextTheme(
           headline5: TextStyle(
               fontFamily: 'Quicksand',
@@ -31,9 +30,9 @@ class MyApp extends StatelessWidget {
               fontSize: 24),
           bodyText2: TextStyle(
               fontFamily: 'Quicksand',
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.normal,
               color: Colors.black,
-              fontSize: 20),
+              fontSize: 16),
           bodyText1: TextStyle(
               fontFamily: 'Quicksand',
               fontWeight: FontWeight.normal,

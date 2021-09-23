@@ -141,27 +141,21 @@ class NoteViewState extends State<NoteView> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Delete Note?",
-            style: Theme.of(context).textTheme.bodyText2,
+            style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),
           ),
           content: Text("Are you sure you want to delete this note?",
               style: Theme.of(context).textTheme.bodyText1),
           actions: <Widget>[
             TextButton(
               child: Text("No",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black)),
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: Text("Yes",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black)),
+                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
               onPressed: () {
                 Navigator.of(context).pop();
                 _delete();
