@@ -12,7 +12,6 @@ import 'package:notes_app/screens/search_note.dart';
 import 'package:notes_app/utils/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:page_transition/page_transition.dart';
 
 
 class NoteList extends StatefulWidget {
@@ -114,28 +113,32 @@ class NoteListState extends State<NoteList> {
       ),
       drawer: Drawer(
         child: Container(
-          color: Colors.white,
+          color: Colors.blueGrey.shade900,
           child: ListView(
             children: <Widget>[
               DrawerHeader(
-                decoration: BoxDecoration(color: Colors.white),
+                decoration: BoxDecoration(color: Colors.blueGrey.shade900),
                 child: Container(
                     child: Column(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.fromLTRB(8, 12, 8, 8),
-                      child: Material(
-                          child: Image.asset(
-                        'assets/splash2.png',
-                        height: 60,
-                        width: 60,
-                      )),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Material(
+                            child: Image.asset(
+                          'assets/myicon.png',
+                          height: 65,
+                          width: 65,
+                          fit: BoxFit.cover,
+                        )),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(6.0),
                       child: Text("My Notes",
                           style: TextStyle(
-                              color: Colors.blueGrey.shade900,
+                              color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.bold)),
                     ),
@@ -143,14 +146,20 @@ class NoteListState extends State<NoteList> {
                       padding: const EdgeInsets.all(1.0),
                       child: Text("© 2021 Aldy Revi",
                           style: TextStyle(
-                              color: Colors.blueGrey.shade900,
+                              color: Colors.white,
                               fontSize: 10,
                               fontWeight: FontWeight.normal)),
                     )
                   ],
                 )),
               ),
-              Divider(height: 1,color: Colors.grey[400],indent: 15, endIndent: 15,thickness: 1,),
+              Divider(
+                height: 1,
+                color: Colors.grey[400],
+                indent: 15,
+                endIndent: 15,
+                thickness: 1,
+              ),
               // Divider(height: 1,color: Colors.grey[400],indent: 20, endIndent: 20,thickness: 1,),
               
               CustomDelete(),
@@ -207,7 +216,11 @@ class NoteListState extends State<NoteList> {
                         padding: const EdgeInsets.fromLTRB(8, 2, 8, 12),
                         child: Text(
                           this.noteList[index].title,
-                          style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),
+                          style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20),
                         ),
                       ),
                     ),
@@ -324,7 +337,7 @@ class CustomAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: Colors.blueGrey.shade900,
       child: InkWell(
         onTap: () {
           showAboutDialog(
@@ -384,13 +397,13 @@ class CustomAbout extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                child: Icon(Icons.info_outline, color: Colors.blueGrey.shade900),
+                child: Icon(Icons.info_outline, color: Colors.white),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                 child: Text("About",
                     style: TextStyle(
-                        color: Colors.blueGrey.shade900,
+                        color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.normal)),
               ),
@@ -414,7 +427,7 @@ class _CustomDeleteState extends State<CustomDelete> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: Colors.blueGrey.shade900,
       child: InkWell(
         onTap: () {
           showDeleteAllDialog(context);
@@ -426,13 +439,13 @@ class _CustomDeleteState extends State<CustomDelete> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                child: Icon(Icons.delete_forever, color: Colors.blueGrey.shade900),
+                child: Icon(Icons.delete_forever, color: Colors.white),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                 child: Text("Delete All",
                     style: TextStyle(
-                        color: Colors.blueGrey.shade900,
+                        color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.normal)),
               ),
@@ -452,21 +465,37 @@ class _CustomDeleteState extends State<CustomDelete> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Delete All Notes?",
-            style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),
+            style: TextStyle(
+                fontFamily: 'Quicksand',
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 20),
           ),
           content: Text("Are you sure you want to delete all notes?",
               style: Theme.of(context).textTheme.bodyText1),
           actions: <Widget>[
             TextButton(
-              child: Text("No",
-                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
+              child: Text(
+                "No",
+                style: TextStyle(
+                    fontFamily: 'Quicksand',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("Yes",
-                  style: TextStyle(fontFamily: 'Quicksand',fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),),
+              child: Text(
+                "Yes",
+                style: TextStyle(
+                    fontFamily: 'Quicksand',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20),
+              ),              
               onPressed: () {
                 databaseHelper.deleteAllNote();
                 Navigator.of(context).pop();

@@ -98,6 +98,8 @@ class NoteDetailState extends State<NoteDetail> {
                     // autofocus: true,
                     controller: titleController,
                     // maxLength: 255,
+                                        maxLines: null,
+
                     style: TextStyle(
                         fontFamily: 'Quicksand',
                         fontWeight: FontWeight.bold,
@@ -128,7 +130,7 @@ class NoteDetailState extends State<NoteDetail> {
                   padding: EdgeInsets.fromLTRB(15, 20, 16, 0),
                   child: TextField(
                     keyboardType: TextInputType.multiline,
-                    maxLines: 8,
+                    maxLines: null,
                     // maxLength: 255,
                     controller: descriptionController,
                     style: Theme.of(context).textTheme.bodyText1,
