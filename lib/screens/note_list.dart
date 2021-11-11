@@ -372,20 +372,7 @@ class CustomAbout extends StatelessWidget {
                         launch(
                             'https://flutter.dev/');
                       },
-                  ),
-                  TextSpan(
-                      style: TextStyle(color: Colors.black),
-                      text:
-                          "\n \nTo see the source code for this app, please visit the "),
-                  TextSpan(
-                    style: TextStyle(color: Colors.blue),
-                    text: "Source Code",
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        launch(
-                            'https://github.com/AldyRevigustian/MyNotes-Flutter-App.git');
-                      },
-                  ),        
+                  ),  
                 ])),
               )
             ],
